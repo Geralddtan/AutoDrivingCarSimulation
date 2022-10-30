@@ -54,3 +54,11 @@ input2.txt
 ```
 
 These above steps will run the part 2 code and output the desired response
+
+## Testing
+
+In order to run the provided pytest cases, you can run the following command:
+
+```
+python -m pytest test/
+```
