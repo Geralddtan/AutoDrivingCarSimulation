@@ -4,7 +4,12 @@
 
 In designing the OOP structure for the Auto Driving Car Simulation a few main considerations were made:
 
-- I created separate classes for each object - Vehicle, Field, GridPoint, Collision to represent them as Objects as much as possible
+- I created separate classes for each object - Vehicle, AutoDrivingCar, Vehicle Manager, Field, GridPoint, Collision to represent them as Objects as much as possible.
+  - Vehicle is an abstract base class which AutoDrivingCar (and other types) can implement
+  - Field represents all information about the field cars are on
+  - GridPoint represents (x,y) coordinates of a vehicles' current position
+  - Collision represents information about a particular collision
+  - VehicleManager is the main controller to handle Vehicle commands and Field information
 - I wanted to ensure that circular dependency between Vehicle and field is not present. The situation of "Field HAS-A Vehicle and Vehicle HAS-A Field" should not occur. While such circular dependency is necessary in some situations, it is not ideal. As a result, I generated an additional class VehicleManager which serves as the central manager which links Vehicle and Field. A VehicleManager has cars and a field attached to it which it is in charge of. NAturally, this class performs the core function which moves vehicles around the field
 - In order to make the solution extensible, I created Vehicle as an abstract base class with some base implementations. An AutoDrivingCar being a type of vehicle will then implement the Vehicle abstract class. For future extensions to the code for other vehicles, they simply need to implement the Vehicle abstract class just as how AutoDrivingCar does. The Vehicle Abstract Class has a function move() which is not implemented. This is because different vehicles could have different moving patterns.
 
