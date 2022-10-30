@@ -68,7 +68,7 @@ class Vehicle(ABC):
     def __init__(self, name, current_position, current_direction, commands):
 
         if current_direction not in ["N", "S", "E", "W"]:
-            raise InvalidVehicleInitialisationException("Invalid Vehicle Direction! It should be 'N, S, E, W")
+            raise InvalidVehicleInitialisationException("Invalid Vehicle Direction! It should be 'N, S, E, W'")
 
         self.name = name
         self.current_position = GridPoint(current_position[0], current_position[1])
