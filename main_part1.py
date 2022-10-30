@@ -17,14 +17,21 @@ class Main:
         return user_input            
 
 if __name__ == "__main__":
+    """
+    Main code to run part 1
+    - Reads in input txt file
+    - Initialises Vehicle, Field, VehicleManager
+    - Moves the Vehicle to get the final position
+    """
     try: 
         main = Main()
         file_path = input("Please Input your txt file name: ")
-        user_input = main.read_txt_file(file_path)
+        user_input = main.read_txt_file(file_path) #Process input txt file
 
         if len(user_input) != 3:
             raise InvalidInitiaisationException("Invalid Input! Please refer to valid input format")
 
+        #Obtains field and vehicle information from user input
         field_size = user_input[0].split(" ")
         vehicle_orientation = user_input[1].split(" ")
         vehicle_x = int(vehicle_orientation[0])
@@ -35,12 +42,14 @@ if __name__ == "__main__":
         field_width, field_height = int(field_size[0]), int(field_size[1])
         field = Field(field_width, field_height)
 
+        # Checkif vehicle initialised outside of field boundary
         if vehicle_x < 0 or vehicle_y < 0 or vehicle_x >= field_width or vehicle_y >= field_height: #If car is initialised outside of field width
             raise InvalidVehicleInitialisationException(f"Car Position {vehicle_x, vehicle_y} is outside Field Boundaries")
 
         car = AutoDrivingCar("A", [vehicle_x, vehicle_y], vehicle_direction, vehicle_commands)
         car_manager = VehicleManager(field, [car])
 
+        # Main Code to get output
         print(car_manager.move_single_vehicle(car))
     except CustomBaseException as e:
         print(str(e))
