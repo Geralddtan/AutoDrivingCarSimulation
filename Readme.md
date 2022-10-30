@@ -28,9 +28,10 @@ Several assumptions were made for both parts of the question and these assumptio
 
 ## Instructions to Run Code
 
-- Environment used to run: MacOS
+Environment used to run: MacOS
 
-Part 1:
+### Part 1:
+
 In order to run Part 1, simply run the following commands:
 
 ```
@@ -45,7 +46,8 @@ After running the above command, you will be prompted to input an input text fil
 
 These above steps will run the part 1 code and output the desired response
 
-Part 2:
+### Part 2:
+
 In order to run Part 2, simply run the following commands:
 
 ```
