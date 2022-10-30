@@ -41,7 +41,7 @@ python main_part1.py
 After running the above command, you will be prompted to input an input text file name. For example:
 
 ```
-./input.txt
+./input/input.txt
 ```
 
 These above steps will run the part 1 code and output the desired response
@@ -57,7 +57,7 @@ python main_part2.py
 After running the above command, you will be prompted to input an input text file name. For example:
 
 ```
-./input2.txt
+./input/input2.txt
 ```
 
 These above steps will run the part 2 code and output the desired response
