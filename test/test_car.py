@@ -39,4 +39,3 @@ def test_valid_move_R():
     assert curr_dir == "S"
     assert curr_command == None
 
-

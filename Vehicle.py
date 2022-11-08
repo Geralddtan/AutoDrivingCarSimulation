@@ -106,7 +106,7 @@ class Vehicle(ABC):
         return self.has_finished_commands
 
     def get_current_command(self):
-        if self.current_command_index >= len(self.commands): #When vehicle have no more commands, raise Exception
+        if self.current_command_index >= len(self.commands): #When vehicle have no more commands
             return None
         return self.commands[self.current_command_index]
 
