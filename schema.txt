@@ -1,0 +1,24 @@
+
+Table 1:
+Car information
+- Car Name (PK)
+- Car Initial Position
+- Car Commands
+
+Table 2:
+Collision Table
+- Collision Index (PK)
+- Position of Collision
+- Time of Collision
+
+Table 3:
+Master Table
+- Scenario Index (PK)
+- Car 1 Name (FK table 1)
+- Car 2 Name (FK table 2)
+- Collsion Index (FK table 2) 
+
+
+Master table
+Scenario1, A, B, Collision1
+Scenario2, A, C, Collision2
