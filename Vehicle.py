@@ -71,7 +71,7 @@ class Vehicle(ABC):
             raise InvalidVehicleInitialisationException("Invalid Vehicle Direction! It should be 'N, S, E, W'")
 
         self.name = name
-        self.current_position = GridPoint(current_position[0], current_position[1])
+        self.current_position = GridPoint(current_position[0], current_position[1], current_position[2])
         self.current_direction = current_direction
         self.commands = commands
         self.current_command_index = 0 # Stores the index of the current command of the vehicle
@@ -86,9 +86,10 @@ class Vehicle(ABC):
     def get_current_position(self) -> GridPoint:
         return self.current_position
 
-    def set_current_position(self, new_x, new_y):
+    def set_current_position(self, new_x, new_y, new_z):
         self.current_position.set_x(new_x) #Sets new x coordinate from grid point
         self.current_position.set_y(new_y) #Sets new y coordinate from grid point
+        self.current_position.set_z(new_z)
 
     def get_current_direction(self) -> str:
         return self.current_direction
@@ -122,7 +123,7 @@ class Vehicle(ABC):
     def get_current_position_direction(self): 
         curr_position = self.get_current_position()
         curr_direction = self.get_current_direction()
-        return " ".join([str(curr_position.get_x()), str(curr_position.get_y()), curr_direction])
+        return " ".join([str(curr_position.get_x()), str(curr_position.get_y()), str(curr_position.get_z()), curr_direction])
 
     @abstractmethod
     def move(self, current_command):

@@ -33,6 +33,20 @@ class AutoDrivingCar(Vehicle):
         new_direction = self.get_right_rotation(current_direction)
         self.set_current_direction(new_direction)
 
+    def move_upwards(self):
+        current_position = self.get_current_position()
+        curr_x, curr_y, curr_z = current_position.get_x(), current_position.get_y(), current_position.get_z()
+        new_x, new_y = curr_x, curr_y
+        new_z = curr_z + 1
+        self.set_current_position(new_x, new_y, new_z)
+
+    def move_downwards(self):
+        current_position = self.get_current_position()
+        curr_x, curr_y, curr_z = current_position.get_x(), current_position.get_y(), current_position.get_z()
+        new_x, new_y = curr_x, curr_y
+        new_z = curr_z - 1
+        self.set_current_position(new_x, new_y, new_z)
+
     def move_forward(self):
         current_direction = self.get_current_direction()
         current_position = self.get_current_position()
@@ -40,7 +54,8 @@ class AutoDrivingCar(Vehicle):
         to_move = self.get_movement(current_direction)
         new_x = current_position.get_x() + to_move[0]
         new_y = current_position.get_y() + to_move[1]
-        self.set_current_position(new_x, new_y)
+        new_z = current_position.get_z()
+        self.set_current_position(new_x, new_y, new_z)
 
     def move(self):
         
@@ -57,8 +72,12 @@ class AutoDrivingCar(Vehicle):
             self.turn_right()
         elif current_command == "F": #Perform command to get new position based on current direction and position
             self.move_forward()
+        elif current_command == "U":
+            self.move_upwards()
+        elif current_command == "D":
+            self.move_downwards()
         else:
-            raise InvalidCommandException(f"{current_command} is an invalid command. Valid commands are 'F', 'L', 'R'")
+            raise InvalidCommandException(f"{current_command} is an invalid command. Valid commands are 'F', 'L', 'R', 'U', 'D'")
 
         #Incrementing index after we move the AutoDrivingCar
         self.increment_current_command_index()

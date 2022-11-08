@@ -36,22 +36,23 @@ if __name__ == "__main__":
         vehicle_orientation = user_input[1].split(" ")
         vehicle_x = int(vehicle_orientation[0])
         vehicle_y = int(vehicle_orientation[1])
-        vehicle_direction = vehicle_orientation[2]
+        vehicle_z = int(vehicle_orientation[2])
+        vehicle_direction = vehicle_orientation[3]
         vehicle_commands = user_input[2]
 
-        field_width, field_height = int(field_size[0]), int(field_size[1])
-        field = Field(field_width, field_height)
+        field_width, field_height, field_z = int(field_size[0]), int(field_size[1]), int(field_size[2])
+        field = Field(field_width, field_height, field_z)
 
         # Checkif vehicle initialised outside of field boundary
-        if vehicle_x < 0 or vehicle_y < 0 or vehicle_x >= field_width or vehicle_y >= field_height: #If car is initialised outside of field width
-            raise InvalidVehicleInitialisationException(f"Car Position {vehicle_x, vehicle_y} is outside Field Boundaries")
+        if vehicle_x < 0 or vehicle_y < 0 or vehicle_x >= field_width or vehicle_y >= field_height or vehicle_z < 0 or vehicle_z >= field_z: #If car is initialised outside of field width
+            raise InvalidVehicleInitialisationException(f"Car Position {vehicle_x, vehicle_y, vehicle_z} is outside Field Boundaries")
 
-        car = AutoDrivingCar("A", [vehicle_x, vehicle_y], vehicle_direction, vehicle_commands)
+        car = AutoDrivingCar("A", [vehicle_x, vehicle_y, vehicle_z], vehicle_direction, vehicle_commands)
         car_manager = VehicleManager(field, [car])
 
         # Main Code to get output
         print(car_manager.move_single_vehicle(car))
     except CustomBaseException as e:
         print(str(e))
-    except Exception as e:
-        print("Something went wrong: ", e)
+    # except Exception as e:
+    #     print("Something went wrong: ", e)

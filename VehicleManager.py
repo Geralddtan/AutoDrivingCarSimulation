@@ -56,7 +56,8 @@ class VehicleManager:
 
         field_width = self.field.get_width()
         field_height = self.field.get_height()
-        x, y = veh_curr_pos.get_x(), veh_curr_pos.get_y()
+        field_z = self.field.get_z()
+        x, y, z = veh_curr_pos.get_x(), veh_curr_pos.get_y(), veh_curr_pos.get_z()
 
         if (veh_curr_com == "F") and ((x == 0) or (x == field_width) or (y == 0) or (y == field_height)): 
             #Check command is moving forward and if vehicle is on the field boundary
@@ -70,8 +71,11 @@ class VehicleManager:
                 return False
             else:
                 return True #All else are valid movements
+        elif (veh_curr_com == "U" and z == field_z) or (veh_curr_com == "D" and z == 0):
+            return False
         else:
             return True
+        
 
     def move_single_vehicle(self, vehicle):
         while vehicle.get_has_finished_commands() == False: #Check to see if vehicle has finished all its commands
